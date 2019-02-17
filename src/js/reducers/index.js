@@ -1,7 +1,18 @@
-import React from 'react';
+import C from "../constants/action-types";
+
+let imgUrls = [
+  'https://source.unsplash.com/3Z70SDuYs5g/800x600',
+  /*  'https://source.unsplash.com/01vFmYAOqQ0/800x600',
+   'https://source.unsplash.com/2Bjq3A7rGn4/800x600',
+   'https://source.unsplash.com/9O1oQ9SzQZQ/800x600',
+   'https://source.unsplash.com/E4944K_4SvI/800x600',
+   'https://source.unsplash.com/-hI5dX2ObAs/800x600',
+   'https://source.unsplash.com/vZlTg_McCDo/800x600' */
+];
 
 const initialState = {
-  start: []
+  showModal: false,
+  galleryUrl: imgUrls
 }
 function rootReducer(state = initialState, action) {
   /*  switch (action.type) {
