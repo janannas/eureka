@@ -1,18 +1,20 @@
 import React from 'react';
+import styled from 'styled-components';
 
 export function GalleryImage(props) {
-  const style = {
-    height: '230px',
-    width: '300px',
-    overflow: 'hidden',
-    objectFit: 'cover',
-    maxWidth: '100%',
-    minHeight: '100%'
-  }
+  const StyledImg = styled.img`
+    height: 230px;
+    width: 300px;
+    overflow: hidden;
+    object-fit: cover;
+    max-width: 100%;
+    min-height: 100%;
+  `;
+
   const { src, handleClick } = props;
   return (
     <div>
-      <img style={style} src={src} alt="" onClick={handleClick} />
+      <StyledImg src={src} alt="" onClick={handleClick} />
     </div>
   );
 }
