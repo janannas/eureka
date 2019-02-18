@@ -18,7 +18,6 @@ export function GalleryModal(props) {
     background-color: #fff;
     border-radius: 5px;
     max-width: 600px;
-    min-height: 300px;
     margin: 0 auto;
     padding: 30px;
     border: solid 2px red;
@@ -26,7 +25,7 @@ export function GalleryModal(props) {
   const { src } = props;
 
   return (
-    <Backdrop>
+    <Backdrop >
       <Modal>
         <img src={src} alt="" style={{ width: '100%' }} />
       </Modal>

@@ -12,13 +12,18 @@ let imgUrls = [
 
 const initialState = {
   showModal: false,
-  galleryUrl: imgUrls
+  galleryUrl: imgUrls,
+  modalUrl: "",
+  activeIndex: 0
 }
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case C.TOGGLE_MODAL: {
+      console.log(action.url);
       return Object.assign({}, state, {
-        showModal: !state.showModal
+        showModal: !state.showModal,
+        modalUrl: action.url,
+        activeIndex: action.index
       })
     }
     default:

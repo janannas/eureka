@@ -1,56 +1,64 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import { connect } from 'react-redux';
-
 import { GalleryImage } from '../components/GalleryImage';
 import { GalleryModal } from '../components/GalleryModal';
-
 import { toggleModal } from '../js/actions/index';
 
 const mapStateToProps = state => {
   return {
     showModal: state.showModal,
-    galleryUrl: state.galleryUrl
+    galleryUrl: state.galleryUrl,
+    modalUrl: state.modalUrl,
+    activeIndex: state.activeIndex
   };
 }
-
 const mapDispatchToProps = dispatch => {
   return {
-    toggleModal: () => { dispatch(toggleModal()) }
+    toggleModal: (element, index) => { dispatch(toggleModal(element, index)) }
   };
 }
 
 class ConnectedApp extends Component {
-  openModal = (el, index) => {
-    this.props.toggleModal();
+
+  toggleModal = (element, index) => {
+    this.props.toggleModal(element, index);
   }
 
+
   render() {
-    const { galleryUrl, showModal } = this.props;
-    console.log(galleryUrl);
+    const {
+      galleryUrl,
+      showModal,
+      modalUrl,
+      activeIndex } = this.props;
+
+    const modalSrc = modalUrl[activeIndex];
+
 
     return (
       <>
-
         {
-          galleryUrl.map((el, index) =>
+          galleryUrl.map((element, index) =>
             <GalleryImage
-              src={el}
+              src={element}
               key={"img_" + index}
-              handleClick={() => this.openModal(el, index)}
+              handleClick={() => this.toggleModal(element, index)}
             />
           )
         }
+
         {
           showModal
             ?
             (
-              <GalleryModal />
+              <GalleryModal
+                src={modalUrl}
+              />
             ) :
             (
               null
             )
-
         }
 
       </>
@@ -61,7 +69,9 @@ class ConnectedApp extends Component {
 ConnectedApp.propTypes = {
   showModal: PropTypes.bool,
   galleryUrl: PropTypes.array,
-  toggleModal: PropTypes.func
+  toggleModal: PropTypes.func,
+  modalUrl: PropTypes.string,
+  activeIndex: PropTypes.number
 }
 
 const App = connect(mapStateToProps, mapDispatchToProps)(ConnectedApp);
