@@ -22,11 +22,12 @@ export function GalleryModal(props) {
     padding: 30px;
     border: solid 2px red;
   `;
-  const { src } = props;
+  const { src, handleClick, preventClick } = props;
 
   return (
-    <Backdrop >
-      <Modal>
+    <Backdrop onClick={handleClick}>
+      {/* Preventing the modal-window from also being affected when the backdrop is clicked*/}
+      <Modal onClick={preventClick}>
         <img src={src} alt="" style={{ width: '100%' }} />
       </Modal>
     </Backdrop>

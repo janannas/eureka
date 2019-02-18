@@ -19,7 +19,6 @@ const initialState = {
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case C.TOGGLE_MODAL: {
-      console.log(action.url);
       return Object.assign({}, state, {
         showModal: !state.showModal,
         modalUrl: action.url,

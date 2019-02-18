@@ -20,7 +20,6 @@ const mapDispatchToProps = dispatch => {
 }
 
 class ConnectedApp extends Component {
-
   toggleModal = (element, index) => {
     this.props.toggleModal(element, index);
   }
@@ -30,11 +29,7 @@ class ConnectedApp extends Component {
     const {
       galleryUrl,
       showModal,
-      modalUrl,
-      activeIndex } = this.props;
-
-    const modalSrc = modalUrl[activeIndex];
-
+      modalUrl } = this.props;
 
     return (
       <>
@@ -54,6 +49,8 @@ class ConnectedApp extends Component {
             (
               <GalleryModal
                 src={modalUrl}
+                handleClick={() => this.toggleModal()}
+                preventClick={(event) => event.stopPropagation()}
               />
             ) :
             (
