@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { GalleryImage } from '../components/GalleryImage';
 import { GalleryModal } from '../components/GalleryModal';
 import { toggleModal } from '../js/actions/index';
+import { LeftArrow } from '../components/arrows/LeftArrow';
+import { RightArrow } from '../components/arrows/RightArrow';
 
 const mapStateToProps = state => {
   return {
@@ -24,6 +26,10 @@ class ConnectedApp extends Component {
     this.props.toggleModal(element, index);
   }
 
+  test = () => {
+    console.log("test");
+
+  }
 
   render() {
     const {
@@ -51,7 +57,10 @@ class ConnectedApp extends Component {
                 src={modalUrl}
                 handleClick={() => this.toggleModal()}
                 preventClick={(event) => event.stopPropagation()}
-              />
+              >
+                <LeftArrow handleClick={this.test} />
+                <RightArrow />
+              </GalleryModal>
             ) :
             (
               null

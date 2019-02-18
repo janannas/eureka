@@ -9,6 +9,8 @@ export function GalleryModal(props) {
     bottom: 0;
     left: 0;
     right: 0;
+    display: flex;
+    align-items: center;
     background-color: rgba(0,0,0,0.3);
     padding: 50px;
   `;
@@ -22,6 +24,7 @@ export function GalleryModal(props) {
     padding: 30px;
     border: solid 2px red;
   `;
+
   const { src, handleClick, preventClick } = props;
 
   return (
@@ -29,6 +32,7 @@ export function GalleryModal(props) {
       {/* Preventing the modal-window from also being affected when the backdrop is clicked*/}
       <Modal onClick={preventClick}>
         <img src={src} alt="" style={{ width: '100%' }} />
+        {props.children}
       </Modal>
     </Backdrop>
   );
