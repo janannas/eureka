@@ -17,6 +17,6 @@ export const BtnWrapper = styled.div`
   `}
   
   &:hover {
-    color: darkgrey;
+    color: salmon;
   }
 `;

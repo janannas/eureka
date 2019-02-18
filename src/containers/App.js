@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 import { GalleryImage } from '../components/GalleryImage';
 import { GalleryModal } from '../components/GalleryModal';
-import { toggleModal } from '../js/actions/index';
-import { LeftArrow } from '../components/arrows/LeftArrow';
+import { toggleModal, nextSlide } from '../js/actions/index';
+import { Arrows } from './Arrows';
 import { RightArrow } from '../components/arrows/RightArrow';
+
 
 const mapStateToProps = state => {
   return {
@@ -17,7 +18,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    toggleModal: (element, index) => { dispatch(toggleModal(element, index)) }
+    toggleModal: (element, index) => { dispatch(toggleModal(element, index)) },
+
   };
 }
 
@@ -26,16 +28,12 @@ class ConnectedApp extends Component {
     this.props.toggleModal(element, index);
   }
 
-  test = () => {
-    console.log("test");
-
-  }
-
   render() {
     const {
       galleryUrl,
       showModal,
-      modalUrl } = this.props;
+      modalUrl,
+      activeIndex } = this.props;
 
     return (
       <>
@@ -58,8 +56,10 @@ class ConnectedApp extends Component {
                 handleClick={() => this.toggleModal()}
                 preventClick={(event) => event.stopPropagation()}
               >
-                <LeftArrow handleClick={this.test} />
-                <RightArrow />
+                <Arrows
+                  galleryUrl={galleryUrl}
+                  activeIndex={activeIndex}
+                />
               </GalleryModal>
             ) :
             (
