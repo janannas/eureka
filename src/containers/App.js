@@ -3,11 +3,13 @@ import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 
 import { GalleryImage } from '../components/GalleryImage';
+import { GalleryModal } from '../components/GalleryModal';
 
 import { toggleModal } from '../js/actions/index';
 
 const mapStateToProps = state => {
   return {
+    showModal: state.showModal,
     galleryUrl: state.galleryUrl
   };
 }
@@ -24,11 +26,12 @@ class ConnectedApp extends Component {
   }
 
   render() {
-    const { galleryUrl } = this.props;
+    const { galleryUrl, showModal } = this.props;
     console.log(galleryUrl);
 
     return (
       <>
+
         {
           galleryUrl.map((el, index) =>
             <GalleryImage
@@ -38,12 +41,25 @@ class ConnectedApp extends Component {
             />
           )
         }
+        {
+          showModal
+            ?
+            (
+              <GalleryModal />
+            ) :
+            (
+              null
+            )
+
+        }
+
       </>
     );
   }
 }
 
 ConnectedApp.propTypes = {
+  showModal: PropTypes.bool,
   galleryUrl: PropTypes.array,
   toggleModal: PropTypes.func
 }
