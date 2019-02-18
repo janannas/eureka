@@ -9,10 +9,10 @@ export function GalleryImage(props) {
     maxWidth: '100%',
     minHeight: '100%'
   }
-  const { src } = props;
+  const { src, handleClick } = props;
   return (
     <div>
-      <img style={style} src={src} alt="" />
+      <img style={style} src={src} alt="" onClick={handleClick} />
     </div>
   );
 }
