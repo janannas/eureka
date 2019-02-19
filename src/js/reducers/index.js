@@ -13,31 +13,24 @@ let imgUrls = [
 const initialState = {
   showModal: false,
   galleryUrl: imgUrls,
-  modalUrl: "",
   activeIndex: 0
 }
+
 function rootReducer(state = initialState, action) {
   switch (action.type) {
-
     case C.TOGGLE_MODAL: {
       return Object.assign({}, state, {
         showModal: !state.showModal,
-        modalUrl: action.url,
         activeIndex: action.index
       })
     }
-
     case C.NEXT_SLIDE: {
       return Object.assign({}, state, {
-        //modalUrl: action.index
         activeIndex: action.index,
-        modalUrl: action.path
       })
     }
-
     case C.PREV_SLIDE: {
       return Object.assign({}, state, {
-        modalUrl: action.url,
         activeIndex: action.index,
       })
     }

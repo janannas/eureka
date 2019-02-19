@@ -3,37 +3,35 @@ import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 import { GalleryImage } from '../components/GalleryImage';
 import { GalleryModal } from '../components/GalleryModal';
-import { toggleModal, nextSlide } from '../js/actions/index';
+import { toggleModal } from '../js/actions/index';
 import { Arrows } from './Arrows';
-import { RightArrow } from '../components/arrows/RightArrow';
 
 
 const mapStateToProps = state => {
   return {
     showModal: state.showModal,
     galleryUrl: state.galleryUrl,
-    modalUrl: state.modalUrl,
     activeIndex: state.activeIndex
   };
 }
 const mapDispatchToProps = dispatch => {
   return {
-    toggleModal: (element, index) => { dispatch(toggleModal(element, index)) },
-
+    toggleModal: (index) => { dispatch(toggleModal(index)) }
   };
 }
 
 class ConnectedApp extends Component {
-  toggleModal = (element, index) => {
-    this.props.toggleModal(element, index);
+  toggleModal = index => {
+    this.props.toggleModal(index);
   }
 
   render() {
     const {
       galleryUrl,
       showModal,
-      modalUrl,
       activeIndex } = this.props;
+
+    const modalUrl = galleryUrl[activeIndex];
 
     return (
       <>
@@ -42,7 +40,7 @@ class ConnectedApp extends Component {
             <GalleryImage
               src={element}
               key={"img_" + index}
-              handleClick={() => this.toggleModal(element, index)}
+              handleClick={() => this.toggleModal(index)}
             />
           )
         }
@@ -76,7 +74,6 @@ ConnectedApp.propTypes = {
   showModal: PropTypes.bool,
   galleryUrl: PropTypes.array,
   toggleModal: PropTypes.func,
-  modalUrl: PropTypes.string,
   activeIndex: PropTypes.number
 }
 
