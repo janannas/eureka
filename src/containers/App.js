@@ -5,6 +5,7 @@ import { GalleryImage } from '../components/GalleryImage';
 import { GalleryModal } from '../components/GalleryModal';
 import { toggleModal } from '../js/actions/index';
 import { Arrows } from './Arrows';
+import { Close } from '../components/Close';
 
 
 const mapStateToProps = state => {
@@ -54,10 +55,12 @@ class ConnectedApp extends Component {
                 handleClick={() => this.toggleModal()}
                 preventClick={(event) => event.stopPropagation()}
               >
+                <Close />
                 <Arrows
                   galleryUrl={galleryUrl}
                   activeIndex={activeIndex}
                 />
+
               </GalleryModal>
             ) :
             (
