@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 import { LeftArrow } from '../components/arrows/LeftArrow';
 import { RightArrow } from '../components/arrows/RightArrow';
@@ -37,6 +38,12 @@ class ConnectedArrows extends Component {
   }
 }
 
-const Arrows = connect(null, mapDispatchToProps)(ConnectedArrows);
+ConnectedArrows.propTypes = {
+  galleryUrl: PropTypes.array,
+  activeIndex: PropTypes.number,
+  nextSlide: PropTypes.func,
+  prevSlide: PropTypes.func,
+}
 
+const Arrows = connect(null, mapDispatchToProps)(ConnectedArrows);
 export { Arrows };
