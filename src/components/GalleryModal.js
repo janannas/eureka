@@ -19,6 +19,7 @@ export function GalleryModal(props) {
   // The modal "window"
   const Modal = styled.div`
     background-color: darkgrey;
+    position: relative;
     border-radius: 5px;
     max-width: 600px;
     margin: 0 auto;
@@ -26,12 +27,13 @@ export function GalleryModal(props) {
     border: solid 1px black;
   `;
 
-  const { src, handleClick, preventClick } = props;
+  const { src, handleClick, preventClick, close } = props;
 
   return (
     <Backdrop onClick={handleClick}>
       {/* Preventing the modal-window from also being affected when the backdrop is clicked*/}
       <Modal onClick={preventClick}>
+        {close}
         <img src={src} alt="" style={{ width: '100%' }} />
         {props.children}
       </Modal>

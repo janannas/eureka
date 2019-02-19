@@ -54,8 +54,12 @@ class ConnectedApp extends Component {
                 src={modalUrl}
                 handleClick={() => this.toggleModal()}
                 preventClick={(event) => event.stopPropagation()}
+                close={
+                  <Close
+                    handleClick={() => this.toggleModal()}
+                  />}
               >
-                <Close />
+
                 <Arrows
                   galleryUrl={galleryUrl}
                   activeIndex={activeIndex}

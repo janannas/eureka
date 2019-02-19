@@ -3,18 +3,19 @@ import 'font-awesome/css/font-awesome.min.css';
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
-  position: absolute;
   text-transform: uppercase;
-  top: 10px;
-  right: 20px;
+  position: absolute;
+  right: 30px;
+  width: 60px;
   cursor: pointer;
   transition: linear .2s;
-  background-color: transparent;
+  background-color: black;
   border: none;
+  outline: none;
   transition: linear .2s;
 
   &:hover:before {
-    color: hotpink;
+    color: salmon;
   }
 
   &:before {
@@ -26,10 +27,10 @@ const StyledButton = styled.button`
   }
 `;
 
-
-
 export function Close(props) {
+  const { handleClick } = props;
+
   return (
-    <StyledButton></StyledButton>
+    <StyledButton onClick={handleClick}></StyledButton>
   );
 } 
