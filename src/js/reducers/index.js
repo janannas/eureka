@@ -16,28 +16,33 @@ const initialState = {
   activeIndex: 0
 }
 
+function setVisibility(state, action) {
+  return Object.assign({}, state, {
+    showModal: !state.showModal,
+    activeIndex: action.index
+  })
+}
+
+function setIndex(state, action) {
+  return Object.assign({}, state, {
+    activeIndex: action.index,
+  })
+}
+
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case C.TOGGLE_MODAL: {
-      return Object.assign({}, state, {
-        showModal: !state.showModal,
-        activeIndex: action.index
-      })
+      return setVisibility(state, action)
     }
     case C.NEXT_SLIDE: {
-      return Object.assign({}, state, {
-        activeIndex: action.index,
-      })
+      return setIndex(state, action)
     }
     case C.PREV_SLIDE: {
-      return Object.assign({}, state, {
-        activeIndex: action.index,
-      })
+      return setIndex(state, action)
     }
     default:
       return state
   }
-
 }
 
 export default rootReducer;
