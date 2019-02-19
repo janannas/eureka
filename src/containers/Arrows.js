@@ -12,29 +12,26 @@ const mapDispatchToProps = dispatch => {
 }
 
 class ConnectedArrows extends Component {
-  nextSlide = () => {
-    let { activeIndex, galleryUrl } = this.props;
-    let current = activeIndex;
-    let next = ++current % galleryUrl.length;
+  nextSlide = (index, urls) => {
+    let current = index;
+    let next = ++current % urls.length;
     this.props.nextSlide(next);
   }
 
-  prevSlide = () => {
-    //TODO: maybe add the url ONCE at the end in App instead of reconfigure it every
-    //dispatch
-    let { activeIndex, galleryUrl } = this.props;
-    let prev = activeIndex - 1;
+  prevSlide = (index, urls) => {
+    let prev = index - 1;
     if (prev < 0) {
-      prev = galleryUrl.length - 1;
+      prev = urls.length - 1;
     }
     this.props.prevSlide(prev);
   }
 
   render() {
+    let { activeIndex, galleryUrl } = this.props;
     return (
       <>
-        <LeftArrow handleClick={() => this.prevSlide()} />
-        <RightArrow handleClick={() => this.nextSlide()} />
+        <LeftArrow handleClick={() => this.prevSlide(activeIndex, galleryUrl)} />
+        <RightArrow handleClick={() => this.nextSlide(activeIndex, galleryUrl)} />
       </>
     );
   }
