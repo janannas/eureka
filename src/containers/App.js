@@ -7,7 +7,6 @@ import { toggleModal } from '../js/actions/index';
 import { Arrows } from './Arrows';
 import { Close } from '../components/Close';
 
-
 const mapStateToProps = state => {
   return {
     showModal: state.showModal,
@@ -15,6 +14,7 @@ const mapStateToProps = state => {
     activeIndex: state.activeIndex
   };
 }
+
 const mapDispatchToProps = dispatch => {
   return {
     toggleModal: (index) => { dispatch(toggleModal(index)) }
@@ -31,7 +31,6 @@ class ConnectedApp extends Component {
       galleryUrl,
       showModal,
       activeIndex } = this.props;
-
     const modalUrl = galleryUrl[activeIndex];
 
     return (
@@ -58,20 +57,19 @@ class ConnectedApp extends Component {
                   <Close
                     handleClick={() => this.toggleModal()}
                   />}
+                arrows={
+                  <Arrows
+                    galleryUrl={galleryUrl}
+                    activeIndex={activeIndex}
+                  />
+                }
               >
-
-                <Arrows
-                  galleryUrl={galleryUrl}
-                  activeIndex={activeIndex}
-                />
-
               </GalleryModal>
             ) :
             (
               null
             )
         }
-
       </>
     );
   }

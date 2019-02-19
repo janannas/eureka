@@ -27,7 +27,7 @@ export function GalleryModal(props) {
     border: solid 1px black;
   `;
 
-  const { src, handleClick, preventClick, close } = props;
+  const { src, handleClick, preventClick, close, arrows } = props;
 
   return (
     <Backdrop onClick={handleClick}>
@@ -35,7 +35,7 @@ export function GalleryModal(props) {
       <Modal onClick={preventClick}>
         {close}
         <img src={src} alt="" style={{ width: '100%' }} />
-        {props.children}
+        {arrows}
       </Modal>
     </Backdrop>
   );
