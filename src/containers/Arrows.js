@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { LeftArrow } from '../components/arrows/LeftArrow';
 import { RightArrow } from '../components/arrows/RightArrow';
-import { nextSlide } from '../js/actions/index';
+import { nextSlide, prevSlide } from '../js/actions/index';
 
 const mapDispatchToProps = dispatch => {
   return {
     nextSlide: (next, path) => { dispatch(nextSlide(next, path)) },
+    prevSlide: (path, prev) => { dispatch(prevSlide(path, prev)) }
   }
 }
 
@@ -16,15 +17,28 @@ class ConnectedArrows extends Component {
     let current = activeIndex;
     let next = ++current % galleryUrl.length;
     let path = galleryUrl[next];
-    console.log(path);
+
     this.props.nextSlide(next, path);
+  }
+
+  prevSlide = () => {
+    //TODO: maybe add the url ONCE at the end in App instead of reconfigure it every
+    //dispatch
+    let { activeIndex, galleryUrl } = this.props;
+    let prev = activeIndex - 1;
+
+    if (prev < 0) {
+      prev = galleryUrl.length - 1;
+    }
+    let path = galleryUrl[prev];
+    this.props.prevSlide(path, prev);
   }
 
   render() {
     return (
       <>
         <LeftArrow handleClick={() => this.prevSlide()} />
-
+        <RightArrow handleClick={() => this.nextSlide()} />
       </>
     );
   }

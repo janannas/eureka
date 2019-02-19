@@ -28,11 +28,17 @@ function rootReducer(state = initialState, action) {
     }
 
     case C.NEXT_SLIDE: {
-      console.log(action.index);
       return Object.assign({}, state, {
         //modalUrl: action.index
         activeIndex: action.index,
         modalUrl: action.path
+      })
+    }
+
+    case C.PREV_SLIDE: {
+      return Object.assign({}, state, {
+        modalUrl: action.url,
+        activeIndex: action.index,
       })
     }
     default:
