@@ -17,12 +17,12 @@ export function GalleryModal(props) {
 
   // The modal "window"
   const Modal = styled.div`
-    background-color: #fff;
+    background-color: darkgrey;
     border-radius: 5px;
     max-width: 600px;
     margin: 0 auto;
     padding: 30px;
-    border: solid 2px red;
+    border: solid 1px black;
   `;
 
   const { src, handleClick, preventClick } = props;
