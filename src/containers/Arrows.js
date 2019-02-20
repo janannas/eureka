@@ -39,10 +39,10 @@ class ConnectedArrows extends Component {
 }
 
 ConnectedArrows.propTypes = {
-  galleryUrl: PropTypes.array,
+  galleryUrl: PropTypes.array.isRequired,
   activeIndex: PropTypes.number,
-  nextSlide: PropTypes.func,
-  prevSlide: PropTypes.func,
+  nextSlide: PropTypes.func.isRequired,
+  prevSlide: PropTypes.func.isRequired,
 }
 
 const Arrows = connect(null, mapDispatchToProps)(ConnectedArrows);

@@ -63,8 +63,7 @@ class ConnectedApp extends Component {
                     activeIndex={activeIndex}
                   />
                 }
-              >
-              </GalleryModal>
+              />
             ) :
             (
               null
@@ -76,9 +75,9 @@ class ConnectedApp extends Component {
 }
 
 ConnectedApp.propTypes = {
-  showModal: PropTypes.bool,
-  galleryUrl: PropTypes.array,
-  toggleModal: PropTypes.func,
+  showModal: PropTypes.bool.isRequired,
+  galleryUrl: PropTypes.array.isRequired,
+  toggleModal: PropTypes.func.isRequired,
   activeIndex: PropTypes.number
 }
 
